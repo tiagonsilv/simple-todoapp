@@ -1,0 +1,4 @@
+#todos li:hover {
+    text-decoration: line-through;
+    cursor: pointer;
+}
