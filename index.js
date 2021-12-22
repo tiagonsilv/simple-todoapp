@@ -1,5 +1,5 @@
-const todos = [];
-
+const todos = JSON.parse(localStorage.getItem('todos')) || [];
+renderTodoList();
 // functions
 function renderTodoList() {
     document.getElementById('todos').innerHTML = '';
@@ -19,6 +19,7 @@ function addTodo(str) {
         alert("You've already added that activity.");
     } else {
         todos.push(str.toString());
+        localStorage.setItem('todos', JSON.stringify(todos));
         renderTodoList();
     }
 }
@@ -27,6 +28,7 @@ function completeTodo(str) {
     if (todos.includes(str)) {
         let index = todos.indexOf(str);
         todos.splice(index, 1);
+        localStorage.setItem('todos', JSON.stringify(todos));
         renderTodoList();
     }
 }
