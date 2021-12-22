@@ -1,4 +1,25 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Poppins:wght@400;700&display=swap');
+
+
+#todos li {
+    font-size: 1.5em;
+    font-family: 'Poppins';
+}
+
 #todos li:hover {
     text-decoration: line-through;
     cursor: pointer;
+}
+
+
+#activity {
+    font-size: 1.5em;
+    padding: 1rem;
+    width: 45rem;
+}
+
+h1 {
+    font-family: 'Montserrat';
+    font-weight: bold;
 }
