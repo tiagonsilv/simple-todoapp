@@ -23,3 +23,28 @@ h1 {
     font-family: 'Montserrat';
     font-weight: bold;
 }
+
+footer {
+    position: absolute;
+    bottom:15px;
+    left:2px;
+    right:2px;
+    text-align:center;
+    color:#999;
+    font-family: 'Poppins';
+    font-size: 1.1rem;
+  }
+
+
+footer a {
+    color: #fd1718;
+    text-decoration: none;
+}
+  
+footer a:hover {
+    text-decoration: underline;
+}
+  
+footer span {
+    color:#444;
+}
