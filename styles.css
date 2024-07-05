@@ -20,11 +20,11 @@ body {
     padding: 0.5rem;
     border-bottom: 1px solid #ddd;
     text-align: left;
+    user-select: none;
 }
 
 #todos li:hover {
-    text-decoration: line-through;
-    cursor: pointer;
+    cursor: text;
 }
 
 .edit-input {

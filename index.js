@@ -35,13 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
             editInput.classList.add('edit-input');
             editInput.style.display = 'none'; // Initially hide input
     
-            // Add click event listener for editing
-            listItem.addEventListener('click', () => {
+            // double click event listener for editing
+            listItem.addEventListener('dblclick', () => {
                 listItem.style.display = 'none'; // Hide list item text
                 editInput.style.display = 'inline-block'; // Show input for editing
                 editInput.focus(); // Focus on input field
             });
-    
+
+            // save edited task when enter
             editInput.addEventListener('keydown', (event) => {
                 if (event.code === "Enter") {
                     const newValue = editInput.value.trim();
@@ -50,18 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.setItem('todos', JSON.stringify(todos)); // Update localStorage
                         renderTodoList(); // Re-render todo list
                     }
+                } else if (event.code === 'Escape') {
+                    editInput.style.display = 'none'; // hide input text
+                    renderTodoList();
                 }
             });
 
-            // Add blur event listener to save edited task
+            // cancel task edit when blur or Esc
             editInput.addEventListener('blur', () => {
-                const newValue = editInput.value.trim();
-                if (newValue !== '') {
-                    todos[index] = newValue; // Update todos array
-                    localStorage.setItem('todos', JSON.stringify(todos)); // Update localStorage
-                    renderTodoList(); // Re-render todo list
-                }
+                editInput.style.display = 'none'; // hide input text
+                renderTodoList(); // re render todo list
+
             });
+
     
             todosList.appendChild(listItem);
             todosList.appendChild(editInput);
@@ -78,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             activityInput.value = '';
             clearAllTasksButton.disabled = false;
         } else {
-            alert(value ? (todos.length >= 10 ? "You can only have up to 10 tasks." : "You've already added that activity.") : "Please enter an activity.");
+            alert(value ? (todos.length >= 10 ? "You can only have up to 10 tasks." : "You've already added that task.") : "Please enter an activity.");
         }
     }
 
@@ -88,15 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTodoList();
         if (todos.length < 1) {
             clearAllTasksButton.disabled = true;
-        }
-    }
-
-    function editTodoPrompt(index) {
-        const newTodo = prompt("Edit your task:", todos[index]);
-        if (newTodo && !todos.includes(newTodo)) {
-            todos[index] = newTodo;
-            localStorage.setItem('todos', JSON.stringify(todos));
-            renderTodoList();
         }
     }
 });
