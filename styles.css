@@ -1,22 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Inter, sans-serif;
+    margin-bottom: 2rem;
 }
 
 .container {
     width: 90%;
-    max-width: 600px;
+    max-width: 10000px;
     text-align: center;
+    flex-grow: 1;
 }
 
 #todos li {
     font-size: 1.5em;
-    font-family: 'Poppins', sans-serif;
     padding: 0.5rem;
     border-bottom: 1px solid #ddd;
     text-align: left;
@@ -24,11 +26,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: calc(100% - 2rem);
+    margin-left: -1rem;
+    overflow-wrap: anywhere;
 }
 
 #todos li.completed-item {
     text-decoration: line-through;
-    opacity: 0.5;   
+    opacity: 0.5;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
 }
 
 #todos li:hover {
@@ -40,11 +47,17 @@ body {
     width: calc(100% - 20px);
     padding: 5px;
     font-size: 1.5em;
+    font-family: 'Inter', sans-serif;
     margin-bottom: 5px;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    margin-left: -1rem;
+    margin-right: 1rem;
 }
 
 #activity {
     font-size: 1.5em;
+    font-family: 'Inter', sans-serif;
     padding: 1rem;
     width: calc(100% - 2rem);
     margin: 0 auto;
@@ -53,46 +66,22 @@ body {
     border-style: solid;
     border-color: #999;
     border-radius: .5em;
-}
-
-#clear-tasks-button {
-    background-color: #f44336;
-    padding: .5em;
-    font-size: 1.5em;
-    color:#ddd;
-    border-color:#f44336;
-    border-style: solid;
-    border-radius: .5em;
-}
-
-#clear-tasks-button:hover:not(:disabled) {
-    background-color: white;
-    border-style: solid;
-    border-color:#f44336;
-    color:#f44336;
-    transition-duration: .15s;
-    cursor: pointer;
-}
-
-#clear-tasks-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    position: relative;
 }
 
 h1 {
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+    position: relative;
     margin-bottom: 1rem;
 }
 
 footer {
-    position: absolute;
+    margin-top: 2rem;
     bottom:15px;
     left:2px;
     right:2px;
     text-align:center;
     color:#999;
-    font-family: 'Poppins', sans-serif;
     font-size: 1.1rem;
 }
 
@@ -115,8 +104,10 @@ footer span {
     border-radius: 1em;
     color: #f44336;
     font-size: 1.2em;
-    padding-right: .3em;
-    padding-left: .3em;
+    padding-left: .5em;
+    padding-right: .5em;
+    padding-top: .3em;
+    padding-bottom: .4em;
     cursor: pointer;
 }
 
@@ -124,4 +115,96 @@ footer span {
     background: #f44336;
     color: #ddd;
     transition-duration: 0.1s;
+}
+
+
+/* Modal stuff */
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+  }
+  
+.modal-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+  }
+  
+.modal-background.show {
+    display: block;
+  }
+  
+.modal-background.show ~ * {
+    filter: blur(5px);
+  }
+
+
+
+/* Buttons */
+
+.btn {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-family: Inter, sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn:hover:not(:disabled) {
+    filter: brightness(0.9);
+    cursor: pointer;
+}
+
+#confirm-clear {
+    background-color: #f44336;
+    color: #ddd;
+    margin-bottom: .5em;
+    width: 100%;
+}
+
+#cancel-clear {
+    background-color: #ddd;
+    width: 100%;
+}
+
+#clear-tasks-button {
+    background-color: #f44336;
+    padding: .7em;
+    font-size: 1.5em;
+    font-family: 'Inter', sans-serif;
+    color:white;
+    border-color:#f44336;
+    border-style: solid;
+    border-radius: .5em;
+    width: calc(100% - 2rem);
+}
+
+#clear-tasks-button:hover:not(:disabled) {
+    background-color: white;
+    border-style: solid;
+    border-color:#f44336;
+    color:#f44336;
+    transition-duration: .15s;
+    cursor: pointer;
+}
+
+#clear-tasks-button:disabled {
+    filter: brightness(0.8);
+    cursor: not-allowed;
 }

@@ -15,12 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    clearAllTasksButton.addEventListener('click', function(){
+
+    const modalBackground = document.getElementById('modal-background');
+    const modalContainer = document.getElementById('modal-container');
+    const confirmClearButton = document.getElementById('confirm-clear');
+    const cancelClearButton = document.getElementById('cancel-clear');
+
+    clearAllTasksButton.addEventListener('click', function() {
+        modalBackground.classList.add('show');
+    document.body.style.overflow = 'hidden'; // prevent scrolling
+    });
+
+    confirmClearButton.addEventListener('click', function() {
         todos = [];
         completeds = [];
         localStorage.clear();
         renderTodoList();
         clearAllTasksButton.disabled = true;
+        modalBackground.classList.remove('show');
+        document.body.style.overflow = 'auto'; // restore scrolling
+    });
+
+    cancelClearButton.addEventListener('click', function() {
+        modalBackground.classList.remove('show');
+        document.body.style.overflow = 'auto'; // restore scrolling
     });
 
     // Functions
@@ -71,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             // Complete button
             const completeButton = document.createElement('button');
-            completeButton.textContent = '✓';
+            completeButton.textContent = '>';
             completeButton.classList.add('complete-button');
             completeButton.addEventListener('click', () => {
                 completeTodo(index);
