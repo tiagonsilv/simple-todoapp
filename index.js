@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listeners
     activityInput.addEventListener('keydown', function(event) {
-        if (event.code === "Enter" && this.value) {
+        if ((event.key === "Enter" || event.key === "Go" || event.key === "Done") && this.value) {
             addTodo();
         }
     });
