@@ -4,4 +4,4 @@ This is my first project.
 
 ## Update
 - `main` branch is the original project
-- `test` is the new, updated project, and the one available on github pages
+- `test` branch is the new, updated project, and the one available on github pages
