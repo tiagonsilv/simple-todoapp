@@ -13,3 +13,7 @@ I decided to revisit it and add some much needed features that might make this a
 ### What's coming:
 - Dark mode
 - Ability to reorganize tasks by dragging and dropping
+
+## Update
+- `main` branch is the original project
+- `test` branch is the new, updated project, and the one available on github pages
