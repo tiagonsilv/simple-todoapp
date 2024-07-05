@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             listItem.addEventListener('dblclick', () => {
                 listItem.style.display = 'none'; // Hide list item text
                 editInput.style.display = 'inline-block'; // Show input for editing
+                editInput.maxLength = 35;
                 editInput.focus(); // Focus on input field
             });
 
@@ -54,13 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.setItem('todos', JSON.stringify(todos)); // Update localStorage
                         renderTodoList(); // Re-render todo list
                     }
+                // cancel task edit when Esc
                 } else if (event.code === 'Escape') {
                     editInput.style.display = 'none'; // hide input text
                     renderTodoList();
                 }
             });
 
-            // cancel task edit when blur or Esc
+            // cancel task edit when blur
             editInput.addEventListener('blur', () => {
                 editInput.style.display = 'none'; // hide input text
                 renderTodoList(); // re render todo list
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Complete button
             const completeButton = document.createElement('button');
             completeButton.textContent = '✓';
-            completeButton.classList.add('remove-button');
+            completeButton.classList.add('complete-button');
             completeButton.addEventListener('click', () => {
                 completeTodo(index);
             });

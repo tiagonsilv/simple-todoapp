@@ -28,7 +28,7 @@ body {
 
 #todos li.completed {
     text-decoration: line-through;
-    color: #888;
+    opacity: 0.5;
 }
 
 #todos li:hover {
@@ -108,10 +108,19 @@ footer span {
     color:#444;
 }
 
-.remove-button {
-    background: none;
+.complete-button {
+    background: #ddd;
     border: none;
+    border-radius: 1em;
     color: #f44336;
     font-size: 1.2em;
+    padding-right: .3em;
+    padding-left: .3em;
     cursor: pointer;
+}
+
+.complete-button:hover {
+    background: #f44336;
+    color: #ddd;
+    transition-duration: 0.1s;
 }
