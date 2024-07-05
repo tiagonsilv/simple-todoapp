@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Functions
     function renderTodoList() {
         todosList.innerHTML = '';
+        if (todos.length > 0) {
+            clearAllTasksButton.disabled = false;
+        }
         todos.forEach((todo, index) => {
             const listItem = document.createElement('li');
             listItem.textContent = todo;
@@ -63,8 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderTodoList(); // re render todo list
 
             });
+            // Complete button
+            const completeButton = document.createElement('button');
+            completeButton.textContent = '✓';
+            completeButton.classList.add('remove-button');
+            completeButton.addEventListener('click', () => {
+                completeTodo(index);
+            });
 
-    
+            listItem.appendChild(completeButton);
             todosList.appendChild(listItem);
             todosList.appendChild(editInput);
         });

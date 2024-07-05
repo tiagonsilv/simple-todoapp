@@ -21,6 +21,14 @@ body {
     border-bottom: 1px solid #ddd;
     text-align: left;
     user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#todos li.completed {
+    text-decoration: line-through;
+    color: #888;
 }
 
 #todos li:hover {
@@ -34,7 +42,6 @@ body {
     font-size: 1.5em;
     margin-bottom: 5px;
 }
-
 
 #activity {
     font-size: 1.5em;
@@ -99,4 +106,12 @@ footer a:hover {
 
 footer span {
     color:#444;
+}
+
+.remove-button {
+    background: none;
+    border: none;
+    color: #f44336;
+    font-size: 1.2em;
+    cursor: pointer;
 }
