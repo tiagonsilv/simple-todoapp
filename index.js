@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // save edited task when enter
             editInput.addEventListener('keydown', (event) => {
-                if (event.code === "Enter") {
+                if ((event.key === "Enter" || event.key === "Go" || event.key === "Done")) {
                     const newValue = editInput.value.trim();
                     if (newValue !== '') {
                         todos[index] = newValue; // Update todos array
