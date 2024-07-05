@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    let completeds = JSON.parse(localStorage.getItem('completeds')) || [];
     const activityInput = document.getElementById('activity');
     const todosList = document.getElementById('todos');
     const clearAllTasksButton = document.getElementById('clear-tasks-button');
     
+
     renderTodoList();
 
     // Event listeners
@@ -15,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     clearAllTasksButton.addEventListener('click', function(){
         todos = [];
+        completeds = [];
         localStorage.clear();
         renderTodoList();
         clearAllTasksButton.disabled = true;
@@ -23,13 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Functions
     function renderTodoList() {
         todosList.innerHTML = '';
-        if (todos.length > 0) {
-            clearAllTasksButton.disabled = false;
-        }
         todos.forEach((todo, index) => {
             const listItem = document.createElement('li');
             listItem.textContent = todo;
             listItem.classList.add('todo-item');
+            console.log(`todo: ${todo}`)
     
             // input for editing
             const editInput = document.createElement('input');
@@ -74,12 +75,27 @@ document.addEventListener('DOMContentLoaded', () => {
             completeButton.classList.add('complete-button');
             completeButton.addEventListener('click', () => {
                 completeTodo(index);
+                console.log(index);
             });
 
             listItem.appendChild(completeButton);
             todosList.appendChild(listItem);
             todosList.appendChild(editInput);
         });
+        //render completeds list
+        completeds.forEach((completed, index) => {
+            const completedItem = document.createElement('li');
+            completedItem.textContent = completed;
+            completedItem.classList.add('completed-item');
+            console.log(`completed: ${completed}`);
+            todosList.appendChild(completedItem);
+        })
+        if (todos.length < 1 && completeds.length < 1) {
+            clearAllTasksButton.disabled = true;
+        } else {
+            clearAllTasksButton.disabled = false;
+        }
+
     }
     
 
@@ -90,18 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('todos', JSON.stringify(todos));
             renderTodoList();
             activityInput.value = '';
-            clearAllTasksButton.disabled = false;
         } else {
             alert(value ? (todos.length >= 10 ? "You can only have up to 10 tasks." : "You've already added that task.") : "Please enter an activity.");
         }
     }
 
     function completeTodo(index) {
+        completeds.push(todos[index]);
+        localStorage.setItem('completeds', JSON.stringify(completeds));
         todos.splice(index, 1);
         localStorage.setItem('todos', JSON.stringify(todos));
         renderTodoList();
-        if (todos.length < 1) {
-            clearAllTasksButton.disabled = true;
-        }
     }
 });

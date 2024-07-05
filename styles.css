@@ -26,9 +26,9 @@ body {
     align-items: center;
 }
 
-#todos li.completed {
+#todos li.completed-item {
     text-decoration: line-through;
-    opacity: 0.5;
+    opacity: 0.5;   
 }
 
 #todos li:hover {
@@ -71,6 +71,7 @@ body {
     border-color:#f44336;
     color:#f44336;
     transition-duration: .15s;
+    cursor: pointer;
 }
 
 #clear-tasks-button:disabled {
