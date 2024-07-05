@@ -31,12 +31,11 @@ body {
     overflow-wrap: anywhere;
 }
 
-#todos li.completed-item {
-    text-decoration: line-through;
+#todos li.completed-item  {
     opacity: 0.5;
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
+    text-decoration: line-through;
 }
+
 
 #todos li:hover {
     cursor: text;
@@ -98,7 +97,7 @@ footer span {
     color:#444;
 }
 
-.complete-button {
+.task-button {
     background: #ddd;
     border: none;
     border-radius: 1em;
@@ -111,7 +110,7 @@ footer span {
     cursor: pointer;
 }
 
-.complete-button:hover {
+.task-button:hover {
     background: #f44336;
     color: #ddd;
     transition-duration: 0.1s;

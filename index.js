@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listeners
     activityInput.addEventListener('keydown', function(event) {
         if ((event.key === "Enter" || event.key === "Go" || event.key === "Done") && this.value) {
-            addTodo();
+            const value = activityInput.value.trim();
+            addTodo(value);
+            activityInput.value = '';
         }
     });
 
@@ -87,10 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderTodoList(); // re render todo list
 
             });
-            // Complete button
+            // Complete task button
             const completeButton = document.createElement('button');
             completeButton.textContent = '>';
-            completeButton.classList.add('complete-button');
+            completeButton.classList.add('task-button');
             completeButton.addEventListener('click', () => {
                 completeTodo(index);
                 console.log(index);
@@ -105,9 +107,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const completedItem = document.createElement('li');
             completedItem.textContent = completed;
             completedItem.classList.add('completed-item');
-            console.log(`completed: ${completed}`);
             todosList.appendChild(completedItem);
+
+            // button for reverting the completion of a task
+            const revertButton = document.createElement('button');
+            revertButton.textContent = '<';
+            revertButton.addEventListener('click', () => {
+                addTodo(completed);
+                completeds.splice(index, 1);
+                localStorage.setItem('completeds', JSON.stringify(todos));
+                renderTodoList();
+            })
+            revertButton.classList.add('task-button');
+            completedItem.appendChild(revertButton);
+
         })
+    
         if (todos.length < 1 && completeds.length < 1) {
             clearAllTasksButton.disabled = true;
         } else {
@@ -117,15 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
 
-    function addTodo() {
-        const value = activityInput.value.trim();
-        if (value && !todos.includes(value) && todos.length < 10) {
-            todos.push(value);
+    function addTodo(text) {
+        if (text && !todos.includes(text) && todos.length < 10) {
+            todos.push(text);
             localStorage.setItem('todos', JSON.stringify(todos));
             renderTodoList();
-            activityInput.value = '';
         } else {
-            alert(value ? (todos.length >= 10 ? "You can only have up to 10 tasks." : "You've already added that task.") : "Please enter an activity.");
+            alert(text ? (todos.length >= 10 ? "You can only have up to 10 tasks." : "You've already added that task.") : "Please enter an activity.");
         }
     }
 
